@@ -1,0 +1,165 @@
+Book
+
+elec = 20e-03;
+tao = 5000;
+Lh = 0.8363; 
+Lc = 1;
+Hh = 9.986e-03;
+Hc = 9.986e-03;
+Th = 0.1927e-03;
+Tc = 0.1927e-03;
+nh = 204.3;
+nc = 204.3;
+lf = 5.189e-03;
+Nhh = 71;
+Nhc = 71+1;
+mc = 2;
+mh = 1.66;
+Nx = Nhh;
+
+roi = 0.1;
+Z = 10;
+Acf = (roi)/(1-(1+roi)^-Z);
+A = Lh*Lc*((Nx*(1+2*nh*(Hh-Th)))+(Nx*(1+2*nh*(Hh - Tc))));
+Affh = (Hh - Th)*(1 - nh*Th)*Lc*Nhh;
+Affc = (Hc - Tc)*(1 - nc*Tc)*Lh*Nhc;
+Gh = 1.66 / Affh;
+Gc = 2 / Affc;
+fs = ((1 / nh ) - Th);
+dhh = ((4)*(fs)*(lf)*(Hh - Th))/(2*((fs*lf)+(Hh-Th)*lf+(Hh - Th)*Th)+Th*fs);
+dhc = ((4)*(fs)*(lf)*(Hh - Th))/(2*((fs*lf)+(Hh-Th)*lf+(Hh - Th)*Th)+Th*fs);
+alpha = ((1 / nh ) - Th) / (Hh - Th);
+sigma = Th / lf;
+gamma = Th / fs;
+Reh = (Gh * dhh)/4.01e-05;
+Rec = (Gc * dhc) / 3.36e-05;
+jh = (0.6522*Reh^-0.5403*alpha^-0.1541*sigma^0.1499*gamma^-0.0678)*(1+5.269e-05*Reh^1.34*alpha^0.504*sigma^0.456*gamma^-1.055)^0.1;
+jc = (0.6522*Rec^-0.5403*alpha^-0.1541*sigma^0.1499*gamma^-0.0678)*(1+5.269e-05*Rec^1.34*alpha^0.504*sigma^0.456*gamma^-1.055)^0.1;
+fh = (9.6243*Reh^-0.7422*alpha^-0.1856*sigma^0.3053*gamma^-0.2659)*(1+7.669e-08*Reh^4.429*alpha^0.920*sigma^3.767*gamma^0.236)^0.1;
+fc = (9.6243*Rec^-0.7422*alpha^-0.1856*sigma^0.3053*gamma^-0.2659)*(1+7.669e-08*Rec^4.429*alpha^0.920*sigma^3.767*gamma^0.236)^0.1;
+Ph = ((2)*(fh)*(Lh)*(Gh^2))/((0.6296)*(dhh))*10e-4;
+Pc = ((2)*(fc)*(Lc)*(Gc^2))/((0.9638)*(dhc))*10e-4;
+Ccp = (Acf * 90 * A^0.6);
+Cop = ((tao*elec*Ph*mh)/(0.6*0.6296))+((tao*elec*Pc*mc)/(0.6*0.9638));
+Ccp + Cop
+
+__________________________________________________________________________________________
+
+AZHAR
+
+elec = 20e-03;
+tao = 5000;
+Cph = 1122;
+Cpc = 1073;
+mc = 2;
+mh = 1.66;
+TempH = 900;
+TempC = 200;
+Prh = 0.731;
+Prc = 0.694;
+
+Lh = 0.793;
+Lc = 1;
+Hh = 10e-03;
+Hc = 10e-03;
+Th = 0.2e-03;
+Tc = 0.2e-03;
+nh = 218;
+nc = 218;
+lf = 7e-03;
+Nhh = 74;
+Nhc = 74+1;
+Nx = Nhh;
+
+
+
+Cmin = mh * Cph;
+Cmax = mc * Cpc;
+Cr = Cmin / Cmax;
+roi = 0.1;
+Z = 10;
+Acf = (roi)/(1-(1+roi)^-Z);
+Ah = Lh*Lc*Nhh*(1+2*nh*(Hh-Th));
+Ac = Lh*Lc*Nhh*(1+2*nh*(Hh-Th));
+A = Ah + Ac;
+Affh = (Hh - Th)*(1 - nh*Th)*Lc*Nhh;
+Affc = (Hc - Tc)*(1 - nc*Tc)*Lh*Nhc;
+Gh = 1.66 / Affh;
+Gc = 2 / Affc;
+fs = ((1 / nh ) - Th);
+dhh = ((4)*(fs)*(lf)*(Hh - Th))/(2*((fs*lf)+(Hh-Th)*lf+(Hh - Th)*Th)+Th*fs);
+dhc = ((4)*(fs)*(lf)*(Hh - Th))/(2*((fs*lf)+(Hh-Th)*lf+(Hh - Th)*Th)+Th*fs);
+alpha = ((1 / nh ) - Th) / (Hh - Th);
+sigma = Th / lf;
+gamma = Th / fs;
+Reh = (Gh * dhh)/4.01e-05;
+Rec = (Gc * dhc) / 3.36e-05;
+jh = (0.6522*Reh^-0.5403*alpha^-0.1541*sigma^0.1499*gamma^-0.0678)*(1+5.269e-05*Reh^1.34*alpha^0.504*sigma^0.456*gamma^-1.055)^0.1;
+jc = (0.6522*Rec^-0.5403*alpha^-0.1541*sigma^0.1499*gamma^-0.0678)*(1+5.269e-05*Rec^1.34*alpha^0.504*sigma^0.456*gamma^-1.055)^0.1;
+fh = (9.6243*Reh^-0.7422*alpha^-0.1856*sigma^0.3053*gamma^-0.2659)*(1+7.669e-08*Reh^4.429*alpha^0.920*sigma^3.767*gamma^0.236)^0.1;
+fc = (9.6243*Rec^-0.7422*alpha^-0.1856*sigma^0.3053*gamma^-0.2659)*(1+7.669e-08*Rec^4.429*alpha^0.920*sigma^3.767*gamma^0.236)^0.1;
+hh = (jh * Gh * Cph * Prh^(-2/3))*10^-3;
+hc = (jc * Gc * Cpc * Prc^(-2/3))*10^-3;
+UA = 1 / ((1/(hh*Ah))+(1/(hc*Ac)));
+NTU = (UA / Cmin)*10^3;
+effectiveness = 1 - exp((1/Cr)*NTU^0.22*(exp(-Cr*NTU^0.78)-1));
+Q = (effectiveness * Cmin * (TempH - TempC))*10^-3;
+Ph = ((2)*(fh)*(Lh)*(Gh^2))/((0.6296)*(dhh))*10e-4;
+Pc = ((2)*(fc)*(Lc)*(Gc^2))/((0.9638)*(dhc))*10e-4;
+Ccp = (Acf * 90 * A^0.6);
+Cop = ((tao*elec*Ph*mh)/(0.6*0.6296))+((tao*elec*Pc*mc)/(0.6*0.9638));
+Ccp + Cop;
+
+x(1) = Lh;
+x(2) = Lc;
+x(3) = Hh;
+x(3) = Hc;
+x(4) = Th;
+x(4) = Tc;
+x(5) = nh;
+x(5) = nc;
+x(6) = lf;
+x(7) = Nhh;
+
+
+
+Lh = x(1);
+Lc = x(2);
+Hh = x(3);
+Hc = x(3);
+Th = x(4);
+Tc = x(4);
+nh = x(5);
+nc = x(5);
+lf = x(6);
+Nhh = x(7);
+Nx = x(7);
+Nhc = (x(7) + 1);
+___________________________________________________________________________________________
+
+Constraints
+
+Hh - 2*Th + (Nhh*(2*Hh + 2*Th));
+(x(3) - 2*x(4) + (x(7)*(2*x(3) + 2*x(4))))-1.5
+
+____________________________________________________________________________________________
+
+FINAL CODE IN X VECTOR
+
+elec = 20e-03;
+tao = 5000;
+Cph = 1122;
+Cpc = 1073;
+mc = 2;
+mh = 1.66;
+TempH = 900;
+TempC = 200;
+Prh = 0.731;
+Prc = 0.694;
+
+Cmin = mh * Cph;
+Cmax = mc * Cpc;
+Cr = Cmin / Cmax;
+roi = 0.1;
+Z = 10;
+Acf = (roi)/(1-(1+roi)^-Z);
